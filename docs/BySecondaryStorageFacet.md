@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**count** | Option<**i32**> |  | [optional]
-**files_count** | Option<**i32**> |  | [optional]
-**file_size_sum** | Option<**i32**> |  | [optional]
-**cost** | Option<**f32**> |  | [optional]
+**count** | Option<**i32**> |  | [optional][readonly]
+**files_count** | Option<**i32**> |  | [optional][readonly]
+**file_size_sum** | Option<**i32**> |  | [optional][readonly]
+**cost** | Option<**f32**> |  | [optional][readonly]
 **on_secondary_nas** | Option<[**crate::models::BySecondaryTypeFacet**](by_secondary_type_facet.md)> |  | [optional]
 **on_secondary_public_cloud** | Option<[**crate::models::BySecondaryTypeFacet**](by_secondary_type_facet.md)> |  | [optional]
 **on_secondary_object_cloud** | Option<[**crate::models::BySecondaryTypeFacet**](by_secondary_type_facet.md)> |  | [optional]

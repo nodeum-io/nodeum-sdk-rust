@@ -59,6 +59,8 @@ mod containers_api;
 pub use self::containers_api::{ ContainersApi, ContainersApiClient };
 mod files_api;
 pub use self::files_api::{ FilesApi, FilesApiClient };
+mod metadata_api;
+pub use self::metadata_api::{ MetadataApi, MetadataApiClient };
 mod mounts_api;
 pub use self::mounts_api::{ MountsApi, MountsApiClient };
 mod nas_api;

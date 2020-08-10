@@ -36,6 +36,7 @@ pub trait StatisticsApi {
     fn statistics_by_date(&self, q: Option<&str>, fq: Option<Vec<String>>, date_attr: Option<&str>) -> Box<dyn Future<Item = crate::models::ByDateFacet, Error = Error<serde_json::Value>>>;
     fn statistics_by_file_extension(&self, q: Option<&str>, fq: Option<Vec<String>>, date_attr: Option<&str>, sort: Option<&str>, limit: Option<i32>) -> Box<dyn Future<Item = crate::models::ByFileExtensionFacet, Error = Error<serde_json::Value>>>;
     fn statistics_by_group_owner(&self, q: Option<&str>, fq: Option<Vec<String>>, date_attr: Option<&str>, sort: Option<&str>, limit: Option<i32>) -> Box<dyn Future<Item = crate::models::ByGroupOwnerFacet, Error = Error<serde_json::Value>>>;
+    fn statistics_by_metadata(&self, q: Option<&str>, fq: Option<Vec<String>>, date_attr: Option<&str>, sort: Option<&str>, limit: Option<i32>) -> Box<dyn Future<Item = crate::models::ByMetadataFacet, Error = Error<serde_json::Value>>>;
     fn statistics_by_primary_cloud(&self, q: Option<&str>, fq: Option<Vec<String>>, date_attr: Option<&str>, sort: Option<&str>, limit: Option<i32>) -> Box<dyn Future<Item = crate::models::ByPrimaryCloudFacet, Error = Error<serde_json::Value>>>;
     fn statistics_by_primary_name(&self, q: Option<&str>, fq: Option<Vec<String>>, date_attr: Option<&str>, sort: Option<&str>, limit: Option<i32>) -> Box<dyn Future<Item = crate::models::ByPrimaryFacet, Error = Error<serde_json::Value>>>;
     fn statistics_by_primary_nas(&self, q: Option<&str>, fq: Option<Vec<String>>, date_attr: Option<&str>, sort: Option<&str>, limit: Option<i32>) -> Box<dyn Future<Item = crate::models::ByPrimaryNasFacet, Error = Error<serde_json::Value>>>;
@@ -47,6 +48,7 @@ pub trait StatisticsApi {
     fn statistics_by_size(&self, q: Option<&str>, fq: Option<Vec<String>>, date_attr: Option<&str>) -> Box<dyn Future<Item = crate::models::BySizeFacet, Error = Error<serde_json::Value>>>;
     fn statistics_by_user_owner(&self, q: Option<&str>, fq: Option<Vec<String>>, date_attr: Option<&str>, sort: Option<&str>, limit: Option<i32>) -> Box<dyn Future<Item = crate::models::ByUserOwnerFacet, Error = Error<serde_json::Value>>>;
     fn statistics_storage(&self, q: Option<&str>, fq: Option<Vec<String>>) -> Box<dyn Future<Item = crate::models::StorageFacet, Error = Error<serde_json::Value>>>;
+    fn statistics_task_by_metadata(&self, q: Option<&str>, fq: Option<Vec<String>>, sort: Option<&str>, limit: Option<i32>) -> Box<dyn Future<Item = crate::models::ByTaskMetadataFacet, Error = Error<serde_json::Value>>>;
     fn statistics_task_by_status(&self, q: Option<&str>, fq: Option<Vec<String>>) -> Box<dyn Future<Item = crate::models::ByTaskStatusFacet, Error = Error<serde_json::Value>>>;
     fn statistics_task_by_storage(&self, q: Option<&str>, fq: Option<Vec<String>>) -> Box<dyn Future<Item = crate::models::ByTaskStorageFacet, Error = Error<serde_json::Value>>>;
     fn statistics_task_by_workflow(&self, q: Option<&str>, fq: Option<Vec<String>>) -> Box<dyn Future<Item = crate::models::ByTaskWorkflowFacet, Error = Error<serde_json::Value>>>;
@@ -105,6 +107,34 @@ impl<C: hyper::client::Connect>StatisticsApi for StatisticsApiClient<C> {
 
     fn statistics_by_group_owner(&self, q: Option<&str>, fq: Option<Vec<String>>, date_attr: Option<&str>, sort: Option<&str>, limit: Option<i32>) -> Box<dyn Future<Item = crate::models::ByGroupOwnerFacet, Error = Error<serde_json::Value>>> {
         let mut req = __internal_request::Request::new(hyper::Method::Get, "/statistics/by_group_owner".to_string())
+            .with_auth(__internal_request::Auth::Basic)
+            .with_auth(__internal_request::Auth::ApiKey(__internal_request::ApiKey{
+                in_header: true,
+                in_query: false,
+                param_name: "Authorization".to_owned(),
+            }))
+        ;
+        if let Some(ref s) = q {
+            req = req.with_query_param("q".to_string(), s.to_string());
+        }
+        if let Some(ref s) = fq {
+            req = req.with_query_param("fq".to_string(), s.join(",").to_string());
+        }
+        if let Some(ref s) = date_attr {
+            req = req.with_query_param("date_attr".to_string(), s.to_string());
+        }
+        if let Some(ref s) = sort {
+            req = req.with_query_param("sort".to_string(), s.to_string());
+        }
+        if let Some(ref s) = limit {
+            req = req.with_query_param("limit".to_string(), s.to_string());
+        }
+
+        req.execute(self.configuration.borrow())
+    }
+
+    fn statistics_by_metadata(&self, q: Option<&str>, fq: Option<Vec<String>>, date_attr: Option<&str>, sort: Option<&str>, limit: Option<i32>) -> Box<dyn Future<Item = crate::models::ByMetadataFacet, Error = Error<serde_json::Value>>> {
+        let mut req = __internal_request::Request::new(hyper::Method::Get, "/statistics/by_metadata".to_string())
             .with_auth(__internal_request::Auth::Basic)
             .with_auth(__internal_request::Auth::ApiKey(__internal_request::ApiKey{
                 in_header: true,
@@ -419,6 +449,31 @@ impl<C: hyper::client::Connect>StatisticsApi for StatisticsApiClient<C> {
         }
         if let Some(ref s) = fq {
             req = req.with_query_param("fq".to_string(), s.join(",").to_string());
+        }
+
+        req.execute(self.configuration.borrow())
+    }
+
+    fn statistics_task_by_metadata(&self, q: Option<&str>, fq: Option<Vec<String>>, sort: Option<&str>, limit: Option<i32>) -> Box<dyn Future<Item = crate::models::ByTaskMetadataFacet, Error = Error<serde_json::Value>>> {
+        let mut req = __internal_request::Request::new(hyper::Method::Get, "/statistics/task_by_metadata".to_string())
+            .with_auth(__internal_request::Auth::Basic)
+            .with_auth(__internal_request::Auth::ApiKey(__internal_request::ApiKey{
+                in_header: true,
+                in_query: false,
+                param_name: "Authorization".to_owned(),
+            }))
+        ;
+        if let Some(ref s) = q {
+            req = req.with_query_param("q".to_string(), s.to_string());
+        }
+        if let Some(ref s) = fq {
+            req = req.with_query_param("fq".to_string(), s.join(",").to_string());
+        }
+        if let Some(ref s) = sort {
+            req = req.with_query_param("sort".to_string(), s.to_string());
+        }
+        if let Some(ref s) = limit {
+            req = req.with_query_param("limit".to_string(), s.to_string());
         }
 
         req.execute(self.configuration.borrow())

@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**count** | Option<**i32**> |  | [optional]
-**files_count** | Option<**i32**> |  | [optional]
-**file_size_sum** | Option<**i32**> |  | [optional]
-**cost** | Option<**f32**> |  | [optional]
+**count** | Option<**i32**> |  | [optional][readonly]
+**files_count** | Option<**i32**> |  | [optional][readonly]
+**file_size_sum** | Option<**i32**> |  | [optional][readonly]
+**cost** | Option<**f32**> |  | [optional][readonly]
 **prim_cloud_connector_name_s** | Option<[**crate::models::ByDateFacetBuckets**](by_date_facet_buckets.md)> |  | [optional]
 **prim_cloud_bucket_name_s** | Option<[**crate::models::ByDateFacetBuckets**](by_date_facet_buckets.md)> |  | [optional]
 **prim_pool_name_s** | Option<[**crate::models::ByDateFacetBuckets**](by_date_facet_buckets.md)> |  | [optional]

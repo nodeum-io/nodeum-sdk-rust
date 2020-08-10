@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**count** | Option<**i32**> |  | [optional]
+**count** | Option<**i32**> |  | [optional][readonly]
 **tape_type_i** | Option<[**crate::models::ByTypeFacetBuckets**](by_type_facet_buckets.md)> |  | [optional]
 **tape_library_type_i** | Option<[**crate::models::ByTypeFacetBuckets**](by_type_facet_buckets.md)> |  | [optional]
 **pool_type_i** | Option<[**crate::models::ByTypeFacetBuckets**](by_type_facet_buckets.md)> |  | [optional]

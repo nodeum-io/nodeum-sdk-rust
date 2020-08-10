@@ -29,6 +29,9 @@ pub struct CloudConnector {
     pub access_key: Option<String>,
     #[serde(rename = "secret_key", skip_serializing_if = "Option::is_none")]
     pub secret_key: Option<String>,
+    /// S3FS mounting options, separated by comma
+    #[serde(rename = "options", skip_serializing_if = "Option::is_none")]
+    pub options: Option<String>,
 }
 
 impl CloudConnector {
@@ -42,6 +45,7 @@ impl CloudConnector {
             region: None,
             access_key: None,
             secret_key: None,
+            options: None,
         }
     }
 }
@@ -65,5 +69,7 @@ pub enum Provider {
     GoogleCloudStorage,
     #[serde(rename = "openstack_swift")]
     OpenstackSwift,
+    #[serde(rename = "wasabi")]
+    Wasabi,
 }
 

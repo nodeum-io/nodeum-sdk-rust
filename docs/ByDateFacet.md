@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**count** | Option<**i32**> |  | [optional]
-**files_count** | Option<**i32**> |  | [optional]
-**file_size_sum** | Option<**i32**> |  | [optional]
-**cost** | Option<**f32**> |  | [optional]
+**count** | Option<**i32**> |  | [optional][readonly]
+**files_count** | Option<**i32**> |  | [optional][readonly]
+**file_size_sum** | Option<**i32**> |  | [optional][readonly]
+**cost** | Option<**f32**> |  | [optional][readonly]
 **in_cache** | Option<[**crate::models::FileFacet**](file_facet.md)> |  | [optional]
 **less_1_week** | Option<[**crate::models::FileFacet**](file_facet.md)> |  | [optional]
 **less_1_month** | Option<[**crate::models::FileFacet**](file_facet.md)> |  | [optional]

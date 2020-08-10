@@ -29,6 +29,9 @@ pub struct CloudBucket {
     pub location: Option<String>,
     #[serde(rename = "price", skip_serializing_if = "Option::is_none")]
     pub price: Option<String>,
+    /// S3FS mounting options, separated by comma
+    #[serde(rename = "options", skip_serializing_if = "Option::is_none")]
+    pub options: Option<String>,
 }
 
 impl CloudBucket {
@@ -42,6 +45,7 @@ impl CloudBucket {
             file_size_sum: None,
             location: None,
             price: None,
+            options: None,
         }
     }
 }

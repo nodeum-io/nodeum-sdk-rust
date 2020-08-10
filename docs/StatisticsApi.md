@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**statistics_by_date**](StatisticsApi.md#statistics_by_date) | **Get** /statistics/by_date | Get statistics about files, grouped by date
 [**statistics_by_file_extension**](StatisticsApi.md#statistics_by_file_extension) | **Get** /statistics/by_file_extension | Get statistics about files, grouped by file extension
 [**statistics_by_group_owner**](StatisticsApi.md#statistics_by_group_owner) | **Get** /statistics/by_group_owner | Get statistics about files, grouped by owner (group)
+[**statistics_by_metadata**](StatisticsApi.md#statistics_by_metadata) | **Get** /statistics/by_metadata | Get statistics about files, grouped by metadata
 [**statistics_by_primary_cloud**](StatisticsApi.md#statistics_by_primary_cloud) | **Get** /statistics/by_primary_cloud | Get statistics about files, grouped by primary Cloud
 [**statistics_by_primary_name**](StatisticsApi.md#statistics_by_primary_name) | **Get** /statistics/by_primary_name | Get statistics about files, grouped by primary storages
 [**statistics_by_primary_nas**](StatisticsApi.md#statistics_by_primary_nas) | **Get** /statistics/by_primary_nas | Get statistics about files, grouped by primary NAS
@@ -18,6 +19,7 @@ Method | HTTP request | Description
 [**statistics_by_size**](StatisticsApi.md#statistics_by_size) | **Get** /statistics/by_size | Get statistics about files, grouped by size
 [**statistics_by_user_owner**](StatisticsApi.md#statistics_by_user_owner) | **Get** /statistics/by_user_owner | Get statistics about files, grouped by owner (user)
 [**statistics_storage**](StatisticsApi.md#statistics_storage) | **Get** /statistics/storage | Get statistics about storages, grouped by types
+[**statistics_task_by_metadata**](StatisticsApi.md#statistics_task_by_metadata) | **Get** /statistics/task_by_metadata | Get statistics about tasks executions, grouped by metadata
 [**statistics_task_by_status**](StatisticsApi.md#statistics_task_by_status) | **Get** /statistics/task_by_status | Get statistics about tasks executions, grouped by status
 [**statistics_task_by_storage**](StatisticsApi.md#statistics_task_by_storage) | **Get** /statistics/task_by_storage | Get statistics about tasks executions, grouped by source and destination
 [**statistics_task_by_workflow**](StatisticsApi.md#statistics_task_by_workflow) | **Get** /statistics/task_by_workflow | Get statistics about tasks executions, grouped by workflow
@@ -111,6 +113,40 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::ByGroupOwnerFacet**](by_group_owner_facet.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## statistics_by_metadata
+
+> crate::models::ByMetadataFacet statistics_by_metadata(q, fq, date_attr, sort, limit)
+Get statistics about files, grouped by metadata
+
+**API Key Scope**: statistics / by_metadata
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**q** | Option<**String**> | Solr query |  |
+**fq** | Option<[**Vec<String>**](String.md)> | Solr filter query  Multiple query can be separated by `|`. |  |
+**date_attr** | Option<**String**> | Type of date to facet on |  |
+**sort** | Option<**String**> | Sort results of facet |  |[default to count]
+**limit** | Option<**i32**> | Limit results of facet |  |[default to 10]
+
+### Return type
+
+[**crate::models::ByMetadataFacet**](by_metadata_facet.md)
 
 ### Authorization
 
@@ -480,6 +516,39 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::StorageFacet**](storage_facet.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## statistics_task_by_metadata
+
+> crate::models::ByTaskMetadataFacet statistics_task_by_metadata(q, fq, sort, limit)
+Get statistics about tasks executions, grouped by metadata
+
+**API Key Scope**: statistics / task_by_metadata
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**q** | Option<**String**> | Solr query |  |
+**fq** | Option<[**Vec<String>**](String.md)> | Solr filter query  Multiple query can be separated by `|`. |  |
+**sort** | Option<**String**> | Sort results of facet on task |  |[default to count]
+**limit** | Option<**i32**> | Limit results of facet |  |[default to 10]
+
+### Return type
+
+[**crate::models::ByTaskMetadataFacet**](by_task_metadata_facet.md)
 
 ### Authorization
 

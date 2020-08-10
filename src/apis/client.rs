@@ -8,6 +8,7 @@ pub struct APIClient {
     cloud_connectors_api: Box<dyn crate::apis::CloudConnectorsApi>,
     containers_api: Box<dyn crate::apis::ContainersApi>,
     files_api: Box<dyn crate::apis::FilesApi>,
+    metadata_api: Box<dyn crate::apis::MetadataApi>,
     mounts_api: Box<dyn crate::apis::MountsApi>,
     nas_api: Box<dyn crate::apis::NasApi>,
     nas_shares_api: Box<dyn crate::apis::NasSharesApi>,
@@ -37,6 +38,7 @@ impl APIClient {
             cloud_connectors_api: Box::new(crate::apis::CloudConnectorsApiClient::new(rc.clone())),
             containers_api: Box::new(crate::apis::ContainersApiClient::new(rc.clone())),
             files_api: Box::new(crate::apis::FilesApiClient::new(rc.clone())),
+            metadata_api: Box::new(crate::apis::MetadataApiClient::new(rc.clone())),
             mounts_api: Box::new(crate::apis::MountsApiClient::new(rc.clone())),
             nas_api: Box::new(crate::apis::NasApiClient::new(rc.clone())),
             nas_shares_api: Box::new(crate::apis::NasSharesApiClient::new(rc.clone())),
@@ -72,6 +74,10 @@ impl APIClient {
 
     pub fn files_api(&self) -> &dyn crate::apis::FilesApi{
         self.files_api.as_ref()
+    }
+
+    pub fn metadata_api(&self) -> &dyn crate::apis::MetadataApi{
+        self.metadata_api.as_ref()
     }
 
     pub fn mounts_api(&self) -> &dyn crate::apis::MountsApi{

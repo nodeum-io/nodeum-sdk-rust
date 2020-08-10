@@ -27,6 +27,10 @@ pub struct ByTaskWorkflowFacet {
     pub finalized_files_sum: Option<i32>,
     #[serde(rename = "bandwidth_avg", skip_serializing_if = "Option::is_none")]
     pub bandwidth_avg: Option<i32>,
+    #[serde(rename = "bandwidth_count", skip_serializing_if = "Option::is_none")]
+    pub bandwidth_count: Option<i32>,
+    #[serde(rename = "tasks_count", skip_serializing_if = "Option::is_none")]
+    pub tasks_count: Option<i32>,
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     pub _type: Option<crate::models::TaskByWorkflowBuckets>,
 }
@@ -41,6 +45,8 @@ impl ByTaskWorkflowFacet {
             processed_files_sum: None,
             finalized_files_sum: None,
             bandwidth_avg: None,
+            bandwidth_count: None,
+            tasks_count: None,
             _type: None,
         }
     }

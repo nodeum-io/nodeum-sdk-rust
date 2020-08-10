@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**count** | Option<**i32**> |  | [optional]
+**count** | Option<**i32**> |  | [optional][readonly]
 **container** | Option<[**crate::models::DefaultFacet**](default_facet.md)> |  | [optional]
 **nas_share** | Option<[**crate::models::StorageNasShareFacets**](storage_nas_share_facets.md)> |  | [optional]
 **cloud_bucket** | Option<[**crate::models::StorageCloudBucketFacets**](storage_cloud_bucket_facets.md)> |  | [optional]

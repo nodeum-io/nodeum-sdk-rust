@@ -47,6 +47,7 @@ pub trait CloudBucketsApi {
     fn update_cloud_bucket(&self, cloud_bucket_id: &str, cloud_bucket_body: crate::models::CloudBucket) -> Box<dyn Future<Item = crate::models::CloudBucket, Error = Error<serde_json::Value>>>;
     fn update_cloud_bucket_by_cloud_connector(&self, cloud_connector_id: &str, cloud_bucket_id: &str, cloud_bucket_body: crate::models::CloudBucket) -> Box<dyn Future<Item = crate::models::CloudBucket, Error = Error<serde_json::Value>>>;
     fn update_cloud_bucket_by_pool(&self, pool_id: &str, cloud_bucket_id: &str, cloud_bucket_body: crate::models::CloudBucket) -> Box<dyn Future<Item = crate::models::CloudBucket, Error = Error<serde_json::Value>>>;
+    fn update_config_file_cloud_bucket(&self, cloud_bucket_id: &str, config_file: std::path::PathBuf) -> Box<dyn Future<Item = String, Error = Error<serde_json::Value>>>;
 }
 
 impl<C: hyper::client::Connect>CloudBucketsApi for CloudBucketsApiClient<C> {
@@ -326,6 +327,21 @@ impl<C: hyper::client::Connect>CloudBucketsApi for CloudBucketsApiClient<C> {
         req = req.with_path_param("pool_id".to_string(), pool_id.to_string());
         req = req.with_path_param("cloud_bucket_id".to_string(), cloud_bucket_id.to_string());
         req = req.with_body_param(cloud_bucket_body);
+
+        req.execute(self.configuration.borrow())
+    }
+
+    fn update_config_file_cloud_bucket(&self, cloud_bucket_id: &str, config_file: std::path::PathBuf) -> Box<dyn Future<Item = String, Error = Error<serde_json::Value>>> {
+        let mut req = __internal_request::Request::new(hyper::Method::Put, "/cloud_buckets/{cloud_bucket_id}/config_file".to_string())
+            .with_auth(__internal_request::Auth::Basic)
+            .with_auth(__internal_request::Auth::ApiKey(__internal_request::ApiKey{
+                in_header: true,
+                in_query: false,
+                param_name: "Authorization".to_owned(),
+            }))
+        ;
+        req = req.with_path_param("cloud_bucket_id".to_string(), cloud_bucket_id.to_string());
+        req = req.with_form_param("config_file".to_string(), unimplemented!());
 
         req.execute(self.configuration.borrow())
     }

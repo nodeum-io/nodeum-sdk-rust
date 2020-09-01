@@ -33,6 +33,7 @@ impl<C: hyper::client::Connect> TapesApiClient<C> {
 }
 
 pub trait TapesApi {
+    fn destroy_tape(&self, tape_id: &str) -> Box<dyn Future<Item = (), Error = Error<serde_json::Value>>>;
     fn index_tape_stats(&self, limit: Option<i32>, offset: Option<i32>) -> Box<dyn Future<Item = crate::models::TapeStatCollection, Error = Error<serde_json::Value>>>;
     fn index_tapes(&self, limit: Option<i32>, offset: Option<i32>, sort_by: Option<Vec<String>>, id: Option<&str>, tape_library_id: Option<&str>, pool_id: Option<&str>, barcode: Option<&str>, location: Option<&str>, _type: Option<&str>, locked: Option<&str>, scratch: Option<&str>, cleaning: Option<&str>, write_protect: Option<&str>, mounted: Option<&str>, ejected: Option<&str>, known: Option<&str>, mount_count: Option<&str>, date_in: Option<&str>, date_move: Option<&str>, free: Option<&str>, max: Option<&str>, last_size_update: Option<&str>, last_maintenance: Option<&str>, last_repack: Option<&str>, repack_status: Option<&str>, hash: Option<&str>, force_import_type: Option<&str>, need_to_check: Option<&str>) -> Box<dyn Future<Item = crate::models::TapeCollection, Error = Error<serde_json::Value>>>;
     fn index_tapes_by_pool(&self, pool_id: &str, limit: Option<i32>, offset: Option<i32>, sort_by: Option<Vec<String>>, id: Option<&str>, tape_library_id: Option<&str>, barcode: Option<&str>, location: Option<&str>, _type: Option<&str>, locked: Option<&str>, scratch: Option<&str>, cleaning: Option<&str>, write_protect: Option<&str>, mounted: Option<&str>, ejected: Option<&str>, known: Option<&str>, mount_count: Option<&str>, date_in: Option<&str>, date_move: Option<&str>, free: Option<&str>, max: Option<&str>, last_size_update: Option<&str>, last_maintenance: Option<&str>, last_repack: Option<&str>, repack_status: Option<&str>, hash: Option<&str>, force_import_type: Option<&str>, need_to_check: Option<&str>) -> Box<dyn Future<Item = crate::models::TapeCollection, Error = Error<serde_json::Value>>>;
@@ -49,6 +50,21 @@ pub trait TapesApi {
 }
 
 impl<C: hyper::client::Connect>TapesApi for TapesApiClient<C> {
+    fn destroy_tape(&self, tape_id: &str) -> Box<dyn Future<Item = (), Error = Error<serde_json::Value>>> {
+        let mut req = __internal_request::Request::new(hyper::Method::Delete, "/tapes/{tape_id}".to_string())
+            .with_auth(__internal_request::Auth::Basic)
+            .with_auth(__internal_request::Auth::ApiKey(__internal_request::ApiKey{
+                in_header: true,
+                in_query: false,
+                param_name: "Authorization".to_owned(),
+            }))
+        ;
+        req = req.with_path_param("tape_id".to_string(), tape_id.to_string());
+        req = req.returns_nothing();
+
+        req.execute(self.configuration.borrow())
+    }
+
     fn index_tape_stats(&self, limit: Option<i32>, offset: Option<i32>) -> Box<dyn Future<Item = crate::models::TapeStatCollection, Error = Error<serde_json::Value>>> {
         let mut req = __internal_request::Request::new(hyper::Method::Get, "/tape_stats".to_string())
             .with_auth(__internal_request::Auth::Basic)

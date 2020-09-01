@@ -25,6 +25,9 @@ pub struct PoolUp {
     pub content: Option<Content>,
     #[serde(rename = "primary_id", skip_serializing_if = "Option::is_none")]
     pub primary_id: Option<i32>,
+    /// For pool of tapes, used to link to a tape library id
+    #[serde(rename = "storage_id", skip_serializing_if = "Option::is_none")]
+    pub storage_id: Option<i32>,
     #[serde(rename = "tape_ids", skip_serializing_if = "Option::is_none")]
     pub tape_ids: Option<Vec<i32>>,
     #[serde(rename = "nas_share_ids", skip_serializing_if = "Option::is_none")]
@@ -42,6 +45,7 @@ impl PoolUp {
             _type: None,
             content: None,
             primary_id: None,
+            storage_id: None,
             tape_ids: None,
             nas_share_ids: None,
             cloud_bucket_ids: None,

@@ -99,6 +99,8 @@ pub enum WorkflowAction {
     Copy,
     #[serde(rename = "move")]
     _Move,
+    #[serde(rename = "erase")]
+    Erase,
     #[serde(rename = "scan")]
     Scan,
     #[serde(rename = "rehydratation")]

@@ -16,6 +16,9 @@ Name | Type | Description | Notes
 **access_date** | Option<**String**> |  | [optional][readonly]
 **uid** | Option<**i32**> |  | [optional][readonly]
 **gid** | Option<**i32**> |  | [optional][readonly]
+**in_cache** | Option<**i32**> |  | [optional][readonly]
+**offline** | Option<**i32**> |  | [optional][readonly]
+**_extern** | Option<**i32**> |  | [optional][readonly]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

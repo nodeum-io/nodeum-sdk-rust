@@ -4,6 +4,7 @@ All URIs are relative to *http://localhost/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**destroy_tape**](TapesApi.md#destroy_tape) | **Delete** /tapes/{tape_id} | Destroys a specific tape. Only when it's an orphan.
 [**index_tape_stats**](TapesApi.md#index_tape_stats) | **Get** /tape_stats | List all tape statistics.
 [**index_tapes**](TapesApi.md#index_tapes) | **Get** /tapes | Lists all tapes.
 [**index_tapes_by_pool**](TapesApi.md#index_tapes_by_pool) | **Get** /pools/{pool_id}/tapes | Lists all tapes.
@@ -18,6 +19,36 @@ Method | HTTP request | Description
 [**show_tape_stat_by_pool**](TapesApi.md#show_tape_stat_by_pool) | **Get** /pools/{pool_id}/tapes/{tape_id}/tape_stat | Display statistic for a specific tape.
 [**show_tape_stat_by_tape_library**](TapesApi.md#show_tape_stat_by_tape_library) | **Get** /tape_libraries/{tape_library_id}/tapes/{tape_id}/tape_stat | Display statistic for a specific tape.
 
+
+
+## destroy_tape
+
+> destroy_tape(tape_id)
+Destroys a specific tape. Only when it's an orphan.
+
+**API Key Scope**: tapes / destroy
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**tape_id** | **String** | Numeric ID, or barcode of tape. | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## index_tape_stats

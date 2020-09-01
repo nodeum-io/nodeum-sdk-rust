@@ -37,6 +37,12 @@ pub struct NodeumFile {
     pub uid: Option<i32>,
     #[serde(rename = "gid", skip_serializing_if = "Option::is_none")]
     pub gid: Option<i32>,
+    #[serde(rename = "in_cache", skip_serializing_if = "Option::is_none")]
+    pub in_cache: Option<i32>,
+    #[serde(rename = "offline", skip_serializing_if = "Option::is_none")]
+    pub offline: Option<i32>,
+    #[serde(rename = "extern", skip_serializing_if = "Option::is_none")]
+    pub _extern: Option<i32>,
 }
 
 impl NodeumFile {
@@ -54,6 +60,9 @@ impl NodeumFile {
             access_date: None,
             uid: None,
             gid: None,
+            in_cache: None,
+            offline: None,
+            _extern: None,
         }
     }
 }

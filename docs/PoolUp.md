@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **_type** | Option<**String**> |  | [optional]
 **content** | Option<**String**> |  | [optional]
 **primary_id** | Option<**i32**> |  | [optional][readonly]
+**storage_id** | Option<**i32**> | For pool of tapes, used to link to a tape library id | [optional]
 **tape_ids** | Option<**Vec<i32>**> |  | [optional]
 **nas_share_ids** | Option<**Vec<i32>**> |  | [optional]
 **cloud_bucket_ids** | Option<**Vec<i32>**> |  | [optional]

@@ -70,6 +70,8 @@ pub enum Type {
     Barcodes,
     #[serde(rename = "overwrite")]
     Overwrite,
+    #[serde(rename = "soft_erase")]
+    SoftErase,
     #[serde(rename = "task_template")]
     TaskTemplate,
 }
